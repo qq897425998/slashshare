@@ -1,15 +1,15 @@
 var app = require('koa')();
 var router = require('koa-router')();
+var koaBody = require('koa-body')();
 
 
-router.get('/api', function *(next) {
+router.get('/api', function* (next) {
     this.body = 'test data'
 });
 
 
-// 首页 —— 推荐列表（猜你喜欢）
-var homeListData = require('./home/.js')
-router.get('/api/homelist/:city/:page', function *(next) {
+var homeListData = require('./home/getindexinfo-login.js')
+router.get('/api/homelist/:city/:page', function* (next) {
     // 参数
     const params = this.params
     const paramsCity = params.city
@@ -21,9 +21,14 @@ router.get('/api/homelist/:city/:page', function *(next) {
     this.body = homeListData
 });
 
-
+router.post('/api/post', koaBody, function *(next) {
+    console.log(this.request.body)
+    this.body = JSON.stringify(this.request.body)
+});
 
 // 开始服务并生成路由
 app.use(router.routes())
-   .use(router.allowedMethods());a
-app.listen(3000);
+    .use(router.allowedMethods());
+
+app.listen(5000);
+
