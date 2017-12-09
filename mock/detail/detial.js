@@ -13,7 +13,7 @@ module.exports = {
             looked_num: 1000000, //被观看次数
             ctime: "2017-1-1-13:00",//发布时间
 
-            tubetitle: "" //频道信息
+            tubetitle: "小明分享" //频道信息
 
         },
         commit:{
